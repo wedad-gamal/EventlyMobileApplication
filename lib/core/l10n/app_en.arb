@@ -1,0 +1,10 @@
+{
+  "@@locale": "en",
+  "personalizeTitle": "Personalize Your Experience",
+  "personalizeDescription": "Choose your preferred theme and language to get started with a comfortable, tailored experience that suits your style.",
+  "languageLabel": "Language",
+  "english": "English",
+  "arabic": "Arabic",
+  "themeLabel": "Theme",
+  "letsStart": "Let’s start"
+}
