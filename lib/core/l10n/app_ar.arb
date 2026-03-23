@@ -1,0 +1,10 @@
+{
+  "@@locale": "ar",
+  "personalizeTitle": "خصص تجربتك",
+  "personalizeDescription": "اختر اللغة والمظهر المفضلين لديك للبدء بتجربة مخصصة ومريحة تناسب ذوقك.",
+  "languageLabel": "اللغة",
+  "english": "الإنجليزية",
+  "arabic": "العربية",
+  "themeLabel": "المظهر",
+  "letsStart": "لنبدأ"
+}
