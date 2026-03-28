@@ -3,13 +3,22 @@ import 'package:evently_app/core/provider/app_config_provider.dart';
 import 'package:evently_app/core/theme/app_theme.dart';
 import 'package:evently_app/core/utilites/shared_preferences_keys.dart';
 import 'package:evently_app/ui/app_setup/app_setup_screen.dart';
+import 'package:evently_app/ui/home/home_screen.dart';
+import 'package:evently_app/ui/login/login_screen.dart';
+import 'package:evently_app/ui/signup/signup_screen.dart';
 import 'package:evently_app/ui/splash/splash_screen.dart';
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:provider/provider.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
-void main(){
+import 'firebase_options.dart';
+
+void main()async{
+  WidgetsFlutterBinding.ensureInitialized();
+  await Firebase.initializeApp(
+      options: DefaultFirebaseOptions.currentPlatform,
+  );
   runApp(EventlyApplication());
 }
 
@@ -50,6 +59,9 @@ class _EventlyApplicationState extends State<EventlyApplication> {
           routes: {
             SplashScreen.routeName: (context) => const SplashScreen(),
             AppSetupScreen.routeName: (context) => const AppSetupScreen(),
+            LoginScreen.routeName: (context) => const LoginScreen(),
+            SignupScreen.routeName: (context) => const SignupScreen(),
+            HomeScreen.routeName: (context) => const HomeScreen(),
           },
         );
         },

@@ -1,6 +1,7 @@
 import 'package:evently_app/core/l10n/app_localizations.dart';
 import 'package:evently_app/core/provider/app_config_provider.dart';
 import 'package:evently_app/core/theme/app_colors.dart';
+import 'package:evently_app/ui/login/login_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
@@ -8,11 +9,13 @@ class AppSetupScreen extends StatelessWidget {
   static const String routeName = "/app_setup";
   const AppSetupScreen({super.key});
 
+
   @override
   Widget build(BuildContext context) {
     var width = MediaQuery.of(context).size.width;
     var provider = Provider.of<AppConfigProvider>(context);
     var localization = AppLocalizations.of(context)!;
+
     return Scaffold(
       body: SafeArea(
         child: Padding(
@@ -113,7 +116,9 @@ class AppSetupScreen extends StatelessWidget {
                 ],
               ),
               FilledButton(
-                onPressed: () {},
+                onPressed: () {
+                  Navigator.pushReplacementNamed(context, LoginScreen.routeName);
+                },
                 child: Text(localization.letsStart),
                 style: FilledButton.styleFrom(
                   minimumSize: Size(double.infinity, 56),

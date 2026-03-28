@@ -15,6 +15,9 @@ class AppConfigProvider extends ChangeNotifier{
 
   bool get isDark=> themeMode == ThemeMode.dark;
 
+  String get assetSuffix => isDark? "dark": "light";
+
+
   String local= "en";
   void changeLocal(String local)async{
     if(this.local == local) return;

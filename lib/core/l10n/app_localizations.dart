@@ -139,6 +139,168 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Let’s start'**
   String get letsStart;
+
+  /// No description provided for @login_title.
+  ///
+  /// In en, this message translates to:
+  /// **'Login to your account'**
+  String get login_title;
+
+  /// No description provided for @email_placeholder.
+  ///
+  /// In en, this message translates to:
+  /// **'Enter your email'**
+  String get email_placeholder;
+
+  /// No description provided for @password_placeholder.
+  ///
+  /// In en, this message translates to:
+  /// **'Enter your password'**
+  String get password_placeholder;
+
+  /// No description provided for @forgot_password.
+  ///
+  /// In en, this message translates to:
+  /// **'Forget Password?'**
+  String get forgot_password;
+
+  /// No description provided for @login_button.
+  ///
+  /// In en, this message translates to:
+  /// **'Login'**
+  String get login_button;
+
+  /// No description provided for @no_account_prompt.
+  ///
+  /// In en, this message translates to:
+  /// **'Don\'t have an account ?'**
+  String get no_account_prompt;
+
+  /// No description provided for @signup_link.
+  ///
+  /// In en, this message translates to:
+  /// **'Signup'**
+  String get signup_link;
+
+  /// No description provided for @divider_or.
+  ///
+  /// In en, this message translates to:
+  /// **'Or'**
+  String get divider_or;
+
+  /// No description provided for @google_login.
+  ///
+  /// In en, this message translates to:
+  /// **'Login with Google'**
+  String get google_login;
+
+  /// No description provided for @createAccount.
+  ///
+  /// In en, this message translates to:
+  /// **'Create your account'**
+  String get createAccount;
+
+  /// No description provided for @enterName.
+  ///
+  /// In en, this message translates to:
+  /// **'Enter your name'**
+  String get enterName;
+
+  /// No description provided for @enterEmail.
+  ///
+  /// In en, this message translates to:
+  /// **'Enter your email'**
+  String get enterEmail;
+
+  /// No description provided for @enterPassword.
+  ///
+  /// In en, this message translates to:
+  /// **'Enter your password'**
+  String get enterPassword;
+
+  /// No description provided for @confirmPassword.
+  ///
+  /// In en, this message translates to:
+  /// **'Confirm your password'**
+  String get confirmPassword;
+
+  /// No description provided for @signUp.
+  ///
+  /// In en, this message translates to:
+  /// **'Sign up'**
+  String get signUp;
+
+  /// No description provided for @alreadyHaveAccount.
+  ///
+  /// In en, this message translates to:
+  /// **'Already have an account?'**
+  String get alreadyHaveAccount;
+
+  /// No description provided for @login.
+  ///
+  /// In en, this message translates to:
+  /// **'Login'**
+  String get login;
+
+  /// No description provided for @or.
+  ///
+  /// In en, this message translates to:
+  /// **'Or'**
+  String get or;
+
+  /// No description provided for @signUpWithGoogle.
+  ///
+  /// In en, this message translates to:
+  /// **'Sign up with Google'**
+  String get signUpWithGoogle;
+
+  /// No description provided for @nameEmpty.
+  ///
+  /// In en, this message translates to:
+  /// **'Please enter your name'**
+  String get nameEmpty;
+
+  /// No description provided for @nameInvalid.
+  ///
+  /// In en, this message translates to:
+  /// **'Name must contain only English or Arabic letters'**
+  String get nameInvalid;
+
+  /// No description provided for @emailEmpty.
+  ///
+  /// In en, this message translates to:
+  /// **'Please enter your email'**
+  String get emailEmpty;
+
+  /// No description provided for @emailInvalid.
+  ///
+  /// In en, this message translates to:
+  /// **'Please enter a valid email address'**
+  String get emailInvalid;
+
+  /// No description provided for @passwordEmpty.
+  ///
+  /// In en, this message translates to:
+  /// **'Please enter your password'**
+  String get passwordEmpty;
+
+  /// No description provided for @passwordTooShort.
+  ///
+  /// In en, this message translates to:
+  /// **'Password must be at least 8 characters'**
+  String get passwordTooShort;
+
+  /// No description provided for @confirmPasswordEmpty.
+  ///
+  /// In en, this message translates to:
+  /// **'Please confirm your password'**
+  String get confirmPasswordEmpty;
+
+  /// No description provided for @passwordsDoNotMatch.
+  ///
+  /// In en, this message translates to:
+  /// **'Passwords do not match'**
+  String get passwordsDoNotMatch;
 }
 
 class _AppLocalizationsDelegate
