@@ -1,21 +1,21 @@
 {
   "@@locale": "ar",
-  "personalizeTitle": "خصص تجربتك",
+  "personalizeTitle": "خص تجربتك",
   "personalizeDescription": "اختر اللغة والمظهر المفضلين لديك للبدء بتجربة مخصصة ومريحة تناسب ذوقك.",
   "languageLabel": "اللغة",
   "english": "الإنجليزية",
   "arabic": "العربية",
   "themeLabel": "المظهر",
   "letsStart": "لنبدأ",
-  "login_title": "تسجيل الدخول إلى حسابك",
-  "email_placeholder": "أدخل بريدك الإلكتروني",
-  "password_placeholder": "أدخل كلمة المرور",
-  "forgot_password": "هل نسيت كلمة المرور؟",
-  "login_button": "تسجيل الدخول",
-  "no_account_prompt": "ليس لديك حساب؟",
-  "signup_link": "إنشاء حساب",
-  "divider_or": "أو",
-  "google_login": "تسجيل الدخول باستخدام جوجل",
+  "loginTitle": "تسجيل الدخول إلى حسابك",
+  "emailLabel": "أدخل بريدك الإلكتروني",
+  "passwordLabel": "أدخل كلمة المرور",
+  "forgetPassword": "هل نسيت كلمة المرور؟",
+  "loginButton": "تسجيل الدخول",
+  "dontHaveAccount": "ليس لديك حساب ؟",
+  "signup": "إنشاء حساب",
+  "or": "أو",
+  "loginWithGoogle": "تسجيل الدخول باستخدام جوجل",
   "createAccount": "إنشاء حسابك",
   "enterName": "أدخل اسمك",
   "enterEmail": "أدخل بريدك الإلكتروني",
@@ -24,14 +24,24 @@
   "signUp": "تسجيل",
   "alreadyHaveAccount": "لديك حساب بالفعل؟",
   "login": "تسجيل الدخول",
-  "or": "أو",
   "signUpWithGoogle": "التسجيل باستخدام جوجل",
-  "nameEmpty": "يرجى إدخال الاسم",
-  "nameInvalid": "يجب أن يحتوي الاسم على أحرف إنجليزية أو عربية فقط",
-  "emailEmpty": "يرجى إدخال البريد الإلكتروني",
+  "nameEmpty": "الاسم لا يمكن أن يكون فارغاً",
+  "nameInvalid": "يرجى إدخال اسم صحيح",
+  "emailEmpty": "البريد الإلكتروني لا يمكن أن يكون فارغاً",
   "emailInvalid": "يرجى إدخال بريد إلكتروني صحيح",
-  "passwordEmpty": "يرجى إدخال كلمة المرور",
-  "passwordTooShort": "يجب أن تكون كلمة المرور 8 أحرف على الأقل",
+  "passwordEmpty": "كلمة المرور لا يمكن أن تكون فارغة",
+  "passwordTooShort": "كلمة المرور يجب أن تكون 8 أحرف على الأقل",
   "confirmPasswordEmpty": "يرجى تأكيد كلمة المرور",
-  "passwordsDoNotMatch": "كلمات المرور غير متطابقة"
+  "passwordsDoNotMatch": "كلمات المرور غير متطابقة",
+  "welcomeMessage": "مرحباً، {name}",
+  "@welcomeMessage": {
+    "placeholders": {
+      "name": {
+        "type": "String"
+      }
+    }
+  },
+  "homeTab": "الرئيسية",
+  "favoriteTab": "المفضلة",
+  "profileTab": "الملف الشخصي"
 }

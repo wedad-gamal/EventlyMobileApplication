@@ -2,7 +2,7 @@ import 'package:evently_app/core/l10n/app_localizations.dart';
 import 'package:evently_app/core/provider/app_config_provider.dart';
 import 'package:evently_app/core/theme/app_colors.dart';
 import 'package:evently_app/core/utilites/data_validator.dart';
-import 'package:evently_app/data/firebase_auth_service.dart';
+import 'package:evently_app/data/firebase/firebase_auth_service.dart';
 import 'package:evently_app/ui/home/home_screen.dart';
 import 'package:evently_app/ui/signup/signup_screen.dart';
 import 'package:firebase_auth/firebase_auth.dart';
@@ -44,7 +44,7 @@ class _LoginScreenState extends State<LoginScreen> {
                 Image.asset("assets/images/logo_${provider.assetSuffix}.png", width: width* 0.4,)
               ],
             )),
-            Text(localization.login_title, style: theme.textTheme.titleLarge?.copyWith(
+            Text(localization.loginTitle, style: theme.textTheme.titleLarge?.copyWith(
                 color: theme.colorScheme.primary),),
             Form(
               key: formKey,
@@ -56,7 +56,7 @@ class _LoginScreenState extends State<LoginScreen> {
                     validator: (value) => DataValidator.validateEmail(context, value),
                     decoration: InputDecoration(
                         prefixIcon: Icon(Iconsax.sms_outline),
-                        hintText: localization.email_placeholder
+                        hintText: localization.emailLabel
                     ),
                   ),
                   TextFormField(
@@ -66,7 +66,7 @@ class _LoginScreenState extends State<LoginScreen> {
                     decoration: InputDecoration(
 
                         prefixIcon: Icon(Iconsax.lock_outline),
-                        hintText: localization.password_placeholder,
+                        hintText: localization.passwordLabel,
                         suffixIcon: InkWell(
                             onTap: (){
                               setState(() {
@@ -86,7 +86,7 @@ class _LoginScreenState extends State<LoginScreen> {
               children: [
                 TextButton(onPressed: (){
                   //todo navigate to forget password screen
-                }, child: Text(localization.forgot_password,))
+                }, child: Text(localization.forgetPassword,))
               ],
             ),
             FilledButton(
@@ -110,15 +110,15 @@ class _LoginScreenState extends State<LoginScreen> {
                   }
                 }
 
-              }, child: isLoading? CircularProgressIndicator(color: theme.colorScheme.surface,): Text(localization.login_button),),
+              }, child: isLoading? CircularProgressIndicator(color: theme.colorScheme.surface,): Text(localization.loginButton),),
 
             Row(
               mainAxisAlignment: .center,
               children: [
-                Text(localization.no_account_prompt, style: theme.textTheme.bodyMedium,),
+                Text(localization.dontHaveAccount, style: theme.textTheme.bodyMedium,),
                 TextButton(onPressed: (){
                   Navigator.pushReplacementNamed(context, SignupScreen.routeName);
-                }, child: Text(localization.signup_link))
+                }, child: Text(localization.signup))
               ],
             ),
             Row(
@@ -126,7 +126,7 @@ class _LoginScreenState extends State<LoginScreen> {
                 Expanded(child: Divider(color: theme.colorScheme.secondary.withAlpha(30),)),
                 Padding(
                   padding: const EdgeInsets.symmetric(horizontal: 24.0),
-                  child: Text(localization.divider_or, style: theme.textTheme.titleSmall?.copyWith( color: theme.colorScheme.primary),),
+                  child: Text(localization.or, style: theme.textTheme.titleSmall?.copyWith( color: theme.colorScheme.primary),),
                 ),
                 Expanded(child: Divider(color: theme.colorScheme.secondary.withAlpha(30),)),
               ],
@@ -136,7 +136,7 @@ class _LoginScreenState extends State<LoginScreen> {
               children: [
               Brand(Brands.google),
               SizedBox(width: 10,),
-              Text(localization.google_login)
+              Text(localization.loginWithGoogle)
             ],))
 
           ],

@@ -31,31 +31,31 @@ class AppLocalizationsEn extends AppLocalizations {
   String get letsStart => 'Let’s start';
 
   @override
-  String get login_title => 'Login to your account';
+  String get loginTitle => 'Login to your account';
 
   @override
-  String get email_placeholder => 'Enter your email';
+  String get emailLabel => 'Enter your email';
 
   @override
-  String get password_placeholder => 'Enter your password';
+  String get passwordLabel => 'Enter your password';
 
   @override
-  String get forgot_password => 'Forget Password?';
+  String get forgetPassword => 'Forget Password?';
 
   @override
-  String get login_button => 'Login';
+  String get loginButton => 'Login';
 
   @override
-  String get no_account_prompt => 'Don\'t have an account ?';
+  String get dontHaveAccount => 'Don\'t have an account ?';
 
   @override
-  String get signup_link => 'Signup';
+  String get signup => 'Signup';
 
   @override
-  String get divider_or => 'Or';
+  String get or => 'Or';
 
   @override
-  String get google_login => 'Login with Google';
+  String get loginWithGoogle => 'Login with Google';
 
   @override
   String get createAccount => 'Create your account';
@@ -82,25 +82,22 @@ class AppLocalizationsEn extends AppLocalizations {
   String get login => 'Login';
 
   @override
-  String get or => 'Or';
-
-  @override
   String get signUpWithGoogle => 'Sign up with Google';
 
   @override
-  String get nameEmpty => 'Please enter your name';
+  String get nameEmpty => 'Name cannot be empty';
 
   @override
-  String get nameInvalid => 'Name must contain only English or Arabic letters';
+  String get nameInvalid => 'Please enter a valid name';
 
   @override
-  String get emailEmpty => 'Please enter your email';
+  String get emailEmpty => 'Email cannot be empty';
 
   @override
-  String get emailInvalid => 'Please enter a valid email address';
+  String get emailInvalid => 'Please enter a valid email';
 
   @override
-  String get passwordEmpty => 'Please enter your password';
+  String get passwordEmpty => 'Password cannot be empty';
 
   @override
   String get passwordTooShort => 'Password must be at least 8 characters';
@@ -110,4 +107,18 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get passwordsDoNotMatch => 'Passwords do not match';
+
+  @override
+  String welcomeMessage(String name) {
+    return 'Welcome, $name';
+  }
+
+  @override
+  String get homeTab => 'Home';
+
+  @override
+  String get favoriteTab => 'Favorite';
+
+  @override
+  String get profileTab => 'Profile';
 }

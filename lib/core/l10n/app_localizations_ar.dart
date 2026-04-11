@@ -9,7 +9,7 @@ class AppLocalizationsAr extends AppLocalizations {
   AppLocalizationsAr([String locale = 'ar']) : super(locale);
 
   @override
-  String get personalizeTitle => 'خصص تجربتك';
+  String get personalizeTitle => 'خص تجربتك';
 
   @override
   String get personalizeDescription =>
@@ -31,31 +31,31 @@ class AppLocalizationsAr extends AppLocalizations {
   String get letsStart => 'لنبدأ';
 
   @override
-  String get login_title => 'تسجيل الدخول إلى حسابك';
+  String get loginTitle => 'تسجيل الدخول إلى حسابك';
 
   @override
-  String get email_placeholder => 'أدخل بريدك الإلكتروني';
+  String get emailLabel => 'أدخل بريدك الإلكتروني';
 
   @override
-  String get password_placeholder => 'أدخل كلمة المرور';
+  String get passwordLabel => 'أدخل كلمة المرور';
 
   @override
-  String get forgot_password => 'هل نسيت كلمة المرور؟';
+  String get forgetPassword => 'هل نسيت كلمة المرور؟';
 
   @override
-  String get login_button => 'تسجيل الدخول';
+  String get loginButton => 'تسجيل الدخول';
 
   @override
-  String get no_account_prompt => 'ليس لديك حساب؟';
+  String get dontHaveAccount => 'ليس لديك حساب ؟';
 
   @override
-  String get signup_link => 'إنشاء حساب';
+  String get signup => 'إنشاء حساب';
 
   @override
-  String get divider_or => 'أو';
+  String get or => 'أو';
 
   @override
-  String get google_login => 'تسجيل الدخول باستخدام جوجل';
+  String get loginWithGoogle => 'تسجيل الدخول باستخدام جوجل';
 
   @override
   String get createAccount => 'إنشاء حسابك';
@@ -82,32 +82,43 @@ class AppLocalizationsAr extends AppLocalizations {
   String get login => 'تسجيل الدخول';
 
   @override
-  String get or => 'أو';
-
-  @override
   String get signUpWithGoogle => 'التسجيل باستخدام جوجل';
 
   @override
-  String get nameEmpty => 'يرجى إدخال الاسم';
+  String get nameEmpty => 'الاسم لا يمكن أن يكون فارغاً';
 
   @override
-  String get nameInvalid => 'يجب أن يحتوي الاسم على أحرف إنجليزية أو عربية فقط';
+  String get nameInvalid => 'يرجى إدخال اسم صحيح';
 
   @override
-  String get emailEmpty => 'يرجى إدخال البريد الإلكتروني';
+  String get emailEmpty => 'البريد الإلكتروني لا يمكن أن يكون فارغاً';
 
   @override
   String get emailInvalid => 'يرجى إدخال بريد إلكتروني صحيح';
 
   @override
-  String get passwordEmpty => 'يرجى إدخال كلمة المرور';
+  String get passwordEmpty => 'كلمة المرور لا يمكن أن تكون فارغة';
 
   @override
-  String get passwordTooShort => 'يجب أن تكون كلمة المرور 8 أحرف على الأقل';
+  String get passwordTooShort => 'كلمة المرور يجب أن تكون 8 أحرف على الأقل';
 
   @override
   String get confirmPasswordEmpty => 'يرجى تأكيد كلمة المرور';
 
   @override
   String get passwordsDoNotMatch => 'كلمات المرور غير متطابقة';
+
+  @override
+  String welcomeMessage(String name) {
+    return 'مرحباً، $name';
+  }
+
+  @override
+  String get homeTab => 'الرئيسية';
+
+  @override
+  String get favoriteTab => 'المفضلة';
+
+  @override
+  String get profileTab => 'الملف الشخصي';
 }
