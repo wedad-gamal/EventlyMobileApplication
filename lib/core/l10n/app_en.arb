@@ -7,15 +7,15 @@
   "arabic": "Arabic",
   "themeLabel": "Theme",
   "letsStart": "Let’s start",
-  "login_title": "Login to your account",
-  "email_placeholder": "Enter your email",
-  "password_placeholder": "Enter your password",
-  "forgot_password": "Forget Password?",
-  "login_button": "Login",
-  "no_account_prompt": "Don't have an account ?",
-  "signup_link": "Signup",
-  "divider_or": "Or",
-  "google_login": "Login with Google",
+  "loginTitle": "Login to your account",
+  "emailLabel": "Enter your email",
+  "passwordLabel": "Enter your password",
+  "forgetPassword": "Forget Password?",
+  "loginButton": "Login",
+  "dontHaveAccount": "Don't have an account ?",
+  "signup": "Signup",
+  "or": "Or",
+  "loginWithGoogle": "Login with Google",
   "createAccount": "Create your account",
   "enterName": "Enter your name",
   "enterEmail": "Enter your email",
@@ -24,14 +24,24 @@
   "signUp": "Sign up",
   "alreadyHaveAccount": "Already have an account?",
   "login": "Login",
-  "or": "Or",
   "signUpWithGoogle": "Sign up with Google",
-  "nameEmpty": "Please enter your name",
-  "nameInvalid": "Name must contain only English or Arabic letters",
-  "emailEmpty": "Please enter your email",
-  "emailInvalid": "Please enter a valid email address",
-  "passwordEmpty": "Please enter your password",
+  "nameEmpty": "Name cannot be empty",
+  "nameInvalid": "Please enter a valid name",
+  "emailEmpty": "Email cannot be empty",
+  "emailInvalid": "Please enter a valid email",
+  "passwordEmpty": "Password cannot be empty",
   "passwordTooShort": "Password must be at least 8 characters",
   "confirmPasswordEmpty": "Please confirm your password",
-  "passwordsDoNotMatch": "Passwords do not match"
+  "passwordsDoNotMatch": "Passwords do not match",
+  "welcomeMessage": "Welcome, {name}",
+  "@welcomeMessage": {
+    "placeholders": {
+      "name": {
+        "type": "String"
+      }
+    }
+  },
+  "homeTab": "Home",
+  "favoriteTab": "Favorite",
+  "profileTab": "Profile"
 }

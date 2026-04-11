@@ -140,59 +140,59 @@ abstract class AppLocalizations {
   /// **'Let’s start'**
   String get letsStart;
 
-  /// No description provided for @login_title.
+  /// No description provided for @loginTitle.
   ///
   /// In en, this message translates to:
   /// **'Login to your account'**
-  String get login_title;
+  String get loginTitle;
 
-  /// No description provided for @email_placeholder.
+  /// No description provided for @emailLabel.
   ///
   /// In en, this message translates to:
   /// **'Enter your email'**
-  String get email_placeholder;
+  String get emailLabel;
 
-  /// No description provided for @password_placeholder.
+  /// No description provided for @passwordLabel.
   ///
   /// In en, this message translates to:
   /// **'Enter your password'**
-  String get password_placeholder;
+  String get passwordLabel;
 
-  /// No description provided for @forgot_password.
+  /// No description provided for @forgetPassword.
   ///
   /// In en, this message translates to:
   /// **'Forget Password?'**
-  String get forgot_password;
+  String get forgetPassword;
 
-  /// No description provided for @login_button.
+  /// No description provided for @loginButton.
   ///
   /// In en, this message translates to:
   /// **'Login'**
-  String get login_button;
+  String get loginButton;
 
-  /// No description provided for @no_account_prompt.
+  /// No description provided for @dontHaveAccount.
   ///
   /// In en, this message translates to:
   /// **'Don\'t have an account ?'**
-  String get no_account_prompt;
+  String get dontHaveAccount;
 
-  /// No description provided for @signup_link.
+  /// No description provided for @signup.
   ///
   /// In en, this message translates to:
   /// **'Signup'**
-  String get signup_link;
+  String get signup;
 
-  /// No description provided for @divider_or.
+  /// No description provided for @or.
   ///
   /// In en, this message translates to:
   /// **'Or'**
-  String get divider_or;
+  String get or;
 
-  /// No description provided for @google_login.
+  /// No description provided for @loginWithGoogle.
   ///
   /// In en, this message translates to:
   /// **'Login with Google'**
-  String get google_login;
+  String get loginWithGoogle;
 
   /// No description provided for @createAccount.
   ///
@@ -242,12 +242,6 @@ abstract class AppLocalizations {
   /// **'Login'**
   String get login;
 
-  /// No description provided for @or.
-  ///
-  /// In en, this message translates to:
-  /// **'Or'**
-  String get or;
-
   /// No description provided for @signUpWithGoogle.
   ///
   /// In en, this message translates to:
@@ -257,31 +251,31 @@ abstract class AppLocalizations {
   /// No description provided for @nameEmpty.
   ///
   /// In en, this message translates to:
-  /// **'Please enter your name'**
+  /// **'Name cannot be empty'**
   String get nameEmpty;
 
   /// No description provided for @nameInvalid.
   ///
   /// In en, this message translates to:
-  /// **'Name must contain only English or Arabic letters'**
+  /// **'Please enter a valid name'**
   String get nameInvalid;
 
   /// No description provided for @emailEmpty.
   ///
   /// In en, this message translates to:
-  /// **'Please enter your email'**
+  /// **'Email cannot be empty'**
   String get emailEmpty;
 
   /// No description provided for @emailInvalid.
   ///
   /// In en, this message translates to:
-  /// **'Please enter a valid email address'**
+  /// **'Please enter a valid email'**
   String get emailInvalid;
 
   /// No description provided for @passwordEmpty.
   ///
   /// In en, this message translates to:
-  /// **'Please enter your password'**
+  /// **'Password cannot be empty'**
   String get passwordEmpty;
 
   /// No description provided for @passwordTooShort.
@@ -301,6 +295,30 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Passwords do not match'**
   String get passwordsDoNotMatch;
+
+  /// No description provided for @welcomeMessage.
+  ///
+  /// In en, this message translates to:
+  /// **'Welcome, {name}'**
+  String welcomeMessage(String name);
+
+  /// No description provided for @homeTab.
+  ///
+  /// In en, this message translates to:
+  /// **'Home'**
+  String get homeTab;
+
+  /// No description provided for @favoriteTab.
+  ///
+  /// In en, this message translates to:
+  /// **'Favorite'**
+  String get favoriteTab;
+
+  /// No description provided for @profileTab.
+  ///
+  /// In en, this message translates to:
+  /// **'Profile'**
+  String get profileTab;
 }
 
 class _AppLocalizationsDelegate

@@ -14,6 +14,14 @@ class AppTheme {
       surface: AppColors.lightBackground,
       onSurface: AppColors.lightMainText,
     ),
+    bottomNavigationBarTheme: BottomNavigationBarThemeData(
+      backgroundColor: AppColors.lightInputs,
+      selectedItemColor: AppColors.lightMain,
+      unselectedItemColor: AppColors.lightSecText,
+      showUnselectedLabels: true,
+      showSelectedLabels: true,
+      elevation: 0,
+    ),
     appBarTheme: AppBarTheme(
       backgroundColor: AppColors.lightBackground,
       foregroundColor: AppColors.lightMainText,
@@ -157,6 +165,14 @@ class AppTheme {
       onSurface: AppColors.darkMainText,
       outline: AppColors.darkStroke,       // #002D8F
     ),
+    bottomNavigationBarTheme: BottomNavigationBarThemeData(
+      backgroundColor: AppColors.darkInputs,
+      selectedItemColor: AppColors.darkMain,
+      unselectedItemColor: AppColors.darkSecText,
+      showUnselectedLabels: true,
+      showSelectedLabels: true,
+      elevation: 0,
+    ),
     appBarTheme: AppBarTheme(
       backgroundColor: AppColors.darkBackground,
       foregroundColor: AppColors.darkMainText,
@@ -186,10 +202,12 @@ class AppTheme {
     ),
     textButtonTheme: TextButtonThemeData(
         style: TextButton.styleFrom(
+          padding: EdgeInsets.all(0),
             textStyle: TextStyle(
               fontSize: 14,
               color: AppColors.darkMain,
               decoration: TextDecoration.underline,
+              
             )
         )
     ),
