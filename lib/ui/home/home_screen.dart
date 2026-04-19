@@ -1,9 +1,14 @@
 import 'package:evently_app/core/l10n/app_localizations.dart';
-import 'package:evently_app/core/theme/app_colors.dart';
+import 'package:evently_app/core/provider/app_config_provider.dart';
 import 'package:evently_app/data/firebase/firebase_auth_service.dart';
+import 'package:evently_app/data/models/category.dart';
 import 'package:evently_app/ui/event_management/event_management_screen.dart';
+import 'package:evently_app/ui/home/tabs/favorite/favorite_tab.dart';
+import 'package:evently_app/ui/home/tabs/home/home_tab.dart';
+import 'package:evently_app/ui/home/tabs/profile/profile_tab.dart';
 import 'package:flutter/material.dart';
 import 'package:icons_plus/icons_plus.dart';
+import 'package:provider/provider.dart';
 
 class HomeScreen extends StatefulWidget {
   static const String routeName = "/home";
@@ -14,24 +19,34 @@ class HomeScreen extends StatefulWidget {
 }
 
 class _HomeScreenState extends State<HomeScreen> {
+  final List<Widget> tabs = [
+    HomeTab(),
+    FavoriteTab(),
+    ProfileTab()
+  ];
   int selectedIndex = 0;
+  
 
   @override
   Widget build(BuildContext context) {
     final localization = AppLocalizations.of(context)!;
     FirebaseAuthService authService = FirebaseAuthService();
+    final provider = context.watch<AppConfigProvider>();
+    var theme = Theme.of(context);
     var user = authService.currentUser;
 
     return Scaffold(
-      appBar: AppBar(
-        title: Text(localization.welcomeMessage(user.displayName ?? "")),
-      ),
+     
+      body: tabs[selectedIndex],
       floatingActionButton: Container(
         decoration: BoxDecoration(
           boxShadow: [
-            BoxShadow(color: Theme.of(context).primaryColor.withAlpha(30), blurRadius: 20, offset: Offset(0, 10)),
-
-          ]
+            BoxShadow(
+              color: Theme.of(context).primaryColor.withAlpha(30),
+              blurRadius: 20,
+              offset: Offset(0, 10),
+            ),
+          ],
         ),
         child: FloatingActionButton(
           onPressed: () {
@@ -43,9 +58,11 @@ class _HomeScreenState extends State<HomeScreen> {
       ),
 
       bottomNavigationBar: ClipRRect(
-        borderRadius: BorderRadius.only(topLeft: Radius.circular(30), topRight: Radius.circular(30)),
+        borderRadius: BorderRadius.only(
+          topLeft: Radius.circular(30),
+          topRight: Radius.circular(30),
+        ),
         child: BottomNavigationBar(
-
           currentIndex: selectedIndex,
           onTap: (index) {
             if (selectedIndex == index) return;

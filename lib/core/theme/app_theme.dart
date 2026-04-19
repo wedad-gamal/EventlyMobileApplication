@@ -12,7 +12,7 @@ class AppTheme {
       error: AppColors.lightRed,
       onError: AppColors.lightInputs,
       surface: AppColors.lightBackground,
-      onSurface: AppColors.lightMainText,
+      onSurface: const Color.fromARGB(255, 78, 9, 9),
     ),
     bottomNavigationBarTheme: BottomNavigationBarThemeData(
       backgroundColor: AppColors.lightInputs,

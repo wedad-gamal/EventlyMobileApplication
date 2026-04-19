@@ -114,6 +114,12 @@ class AppLocalizationsAr extends AppLocalizations {
   }
 
   @override
+  String get homeWelcomeBack => 'مرحباً بعودتك';
+
+  @override
+  String get homeGuestUser => 'ضيف';
+
+  @override
   String get homeTab => 'الرئيسية';
 
   @override
@@ -121,4 +127,55 @@ class AppLocalizationsAr extends AppLocalizations {
 
   @override
   String get profileTab => 'الملف الشخصي';
+
+  @override
+  String get eventManagementAddEventTitle => 'إضافة فعالية';
+
+  @override
+  String get eventManagementPleaseChooseDate => 'يرجى اختيار التاريخ';
+
+  @override
+  String get eventManagementPleaseChooseTime => 'يرجى اختيار الوقت';
+
+  @override
+  String get eventManagementEventAddedSuccess => 'تمت إضافة الفعالية بنجاح!';
+
+  @override
+  String get eventManagementTitleLabel => 'العنوان';
+
+  @override
+  String get eventManagementTitleRequired => 'يرجى إدخال عنوان الفعالية';
+
+  @override
+  String get eventManagementTitleHint => 'عنوان الفعالية';
+
+  @override
+  String get eventManagementDescriptionLabel => 'الوصف';
+
+  @override
+  String get eventManagementDescriptionRequired => 'يرجى إدخال الوصف';
+
+  @override
+  String get eventManagementDescriptionHint => 'وصف الفعالية...';
+
+  @override
+  String get eventManagementEventDate => 'تاريخ الفعالية';
+
+  @override
+  String get eventManagementEventTime => 'وقت الفعالية';
+
+  @override
+  String get eventManagementChooseDate => 'اختر التاريخ';
+
+  @override
+  String get eventManagementChooseTime => 'اختر الوقت';
+
+  @override
+  String get eventManagementAddEventButton => 'إضافة فعالية';
+
+  @override
+  String get eventManagementTimeAm => 'ص';
+
+  @override
+  String get eventManagementTimePm => 'م';
 }

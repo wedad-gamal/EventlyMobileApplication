@@ -114,6 +114,12 @@ class AppLocalizationsEn extends AppLocalizations {
   }
 
   @override
+  String get homeWelcomeBack => 'Welcome Back';
+
+  @override
+  String get homeGuestUser => 'Guest';
+
+  @override
   String get homeTab => 'Home';
 
   @override
@@ -121,4 +127,55 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get profileTab => 'Profile';
+
+  @override
+  String get eventManagementAddEventTitle => 'Add Event';
+
+  @override
+  String get eventManagementPleaseChooseDate => 'Please choose a date';
+
+  @override
+  String get eventManagementPleaseChooseTime => 'Please choose a time';
+
+  @override
+  String get eventManagementEventAddedSuccess => 'Event added successfully!';
+
+  @override
+  String get eventManagementTitleLabel => 'Title';
+
+  @override
+  String get eventManagementTitleRequired => 'Please enter an event title';
+
+  @override
+  String get eventManagementTitleHint => 'Event Title';
+
+  @override
+  String get eventManagementDescriptionLabel => 'Description';
+
+  @override
+  String get eventManagementDescriptionRequired => 'Please enter a description';
+
+  @override
+  String get eventManagementDescriptionHint => 'Event Description...';
+
+  @override
+  String get eventManagementEventDate => 'Event Date';
+
+  @override
+  String get eventManagementEventTime => 'Event Time';
+
+  @override
+  String get eventManagementChooseDate => 'Choose date';
+
+  @override
+  String get eventManagementChooseTime => 'Choose time';
+
+  @override
+  String get eventManagementAddEventButton => 'Add event';
+
+  @override
+  String get eventManagementTimeAm => 'AM';
+
+  @override
+  String get eventManagementTimePm => 'PM';
 }

@@ -54,7 +54,9 @@ class FirebaseAuthService {
     }
   }
 
-  User get currentUser=> FirebaseAuth.instance.currentUser!;
+  User? get currentUser=> FirebaseAuth.instance.currentUser;
+
+  Future<void> logout() async=> await FirebaseAuth.instance.signOut();
 
 
 }

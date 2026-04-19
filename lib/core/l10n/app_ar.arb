@@ -41,7 +41,26 @@
       }
     }
   },
+  "homeWelcomeBack": "مرحباً بعودتك",
+  "homeGuestUser": "ضيف",
   "homeTab": "الرئيسية",
   "favoriteTab": "المفضلة",
-  "profileTab": "الملف الشخصي"
+  "profileTab": "الملف الشخصي",
+  "eventManagementAddEventTitle": "إضافة فعالية",
+  "eventManagementPleaseChooseDate": "يرجى اختيار التاريخ",
+  "eventManagementPleaseChooseTime": "يرجى اختيار الوقت",
+  "eventManagementEventAddedSuccess": "تمت إضافة الفعالية بنجاح!",
+  "eventManagementTitleLabel": "العنوان",
+  "eventManagementTitleRequired": "يرجى إدخال عنوان الفعالية",
+  "eventManagementTitleHint": "عنوان الفعالية",
+  "eventManagementDescriptionLabel": "الوصف",
+  "eventManagementDescriptionRequired": "يرجى إدخال الوصف",
+  "eventManagementDescriptionHint": "وصف الفعالية...",
+  "eventManagementEventDate": "تاريخ الفعالية",
+  "eventManagementEventTime": "وقت الفعالية",
+  "eventManagementChooseDate": "اختر التاريخ",
+  "eventManagementChooseTime": "اختر الوقت",
+  "eventManagementAddEventButton": "إضافة فعالية",
+  "eventManagementTimeAm": "ص",
+  "eventManagementTimePm": "م"
 }

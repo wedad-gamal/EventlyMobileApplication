@@ -302,6 +302,18 @@ abstract class AppLocalizations {
   /// **'Welcome, {name}'**
   String welcomeMessage(String name);
 
+  /// No description provided for @homeWelcomeBack.
+  ///
+  /// In en, this message translates to:
+  /// **'Welcome Back'**
+  String get homeWelcomeBack;
+
+  /// No description provided for @homeGuestUser.
+  ///
+  /// In en, this message translates to:
+  /// **'Guest'**
+  String get homeGuestUser;
+
   /// No description provided for @homeTab.
   ///
   /// In en, this message translates to:
@@ -319,6 +331,108 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Profile'**
   String get profileTab;
+
+  /// App bar title on the add/edit event screen
+  ///
+  /// In en, this message translates to:
+  /// **'Add Event'**
+  String get eventManagementAddEventTitle;
+
+  /// No description provided for @eventManagementPleaseChooseDate.
+  ///
+  /// In en, this message translates to:
+  /// **'Please choose a date'**
+  String get eventManagementPleaseChooseDate;
+
+  /// No description provided for @eventManagementPleaseChooseTime.
+  ///
+  /// In en, this message translates to:
+  /// **'Please choose a time'**
+  String get eventManagementPleaseChooseTime;
+
+  /// No description provided for @eventManagementEventAddedSuccess.
+  ///
+  /// In en, this message translates to:
+  /// **'Event added successfully!'**
+  String get eventManagementEventAddedSuccess;
+
+  /// No description provided for @eventManagementTitleLabel.
+  ///
+  /// In en, this message translates to:
+  /// **'Title'**
+  String get eventManagementTitleLabel;
+
+  /// No description provided for @eventManagementTitleRequired.
+  ///
+  /// In en, this message translates to:
+  /// **'Please enter an event title'**
+  String get eventManagementTitleRequired;
+
+  /// No description provided for @eventManagementTitleHint.
+  ///
+  /// In en, this message translates to:
+  /// **'Event Title'**
+  String get eventManagementTitleHint;
+
+  /// No description provided for @eventManagementDescriptionLabel.
+  ///
+  /// In en, this message translates to:
+  /// **'Description'**
+  String get eventManagementDescriptionLabel;
+
+  /// No description provided for @eventManagementDescriptionRequired.
+  ///
+  /// In en, this message translates to:
+  /// **'Please enter a description'**
+  String get eventManagementDescriptionRequired;
+
+  /// No description provided for @eventManagementDescriptionHint.
+  ///
+  /// In en, this message translates to:
+  /// **'Event Description...'**
+  String get eventManagementDescriptionHint;
+
+  /// No description provided for @eventManagementEventDate.
+  ///
+  /// In en, this message translates to:
+  /// **'Event Date'**
+  String get eventManagementEventDate;
+
+  /// No description provided for @eventManagementEventTime.
+  ///
+  /// In en, this message translates to:
+  /// **'Event Time'**
+  String get eventManagementEventTime;
+
+  /// No description provided for @eventManagementChooseDate.
+  ///
+  /// In en, this message translates to:
+  /// **'Choose date'**
+  String get eventManagementChooseDate;
+
+  /// No description provided for @eventManagementChooseTime.
+  ///
+  /// In en, this message translates to:
+  /// **'Choose time'**
+  String get eventManagementChooseTime;
+
+  /// No description provided for @eventManagementAddEventButton.
+  ///
+  /// In en, this message translates to:
+  /// **'Add event'**
+  String get eventManagementAddEventButton;
+
+  /// No description provided for @eventManagementTimeAm.
+  ///
+  /// In en, this message translates to:
+  /// **'AM'**
+  String get eventManagementTimeAm;
+
+  /// No description provided for @eventManagementTimePm.
+  ///
+  /// In en, this message translates to:
+  /// **'PM'**
+  String get eventManagementTimePm;
 }
 
 class _AppLocalizationsDelegate

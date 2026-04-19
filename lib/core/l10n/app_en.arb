@@ -41,7 +41,29 @@
       }
     }
   },
+  "homeWelcomeBack": "Welcome Back",
+  "homeGuestUser": "Guest",
   "homeTab": "Home",
   "favoriteTab": "Favorite",
-  "profileTab": "Profile"
+  "profileTab": "Profile",
+  "eventManagementAddEventTitle": "Add Event",
+  "@eventManagementAddEventTitle": {
+    "description": "App bar title on the add/edit event screen"
+  },
+  "eventManagementPleaseChooseDate": "Please choose a date",
+  "eventManagementPleaseChooseTime": "Please choose a time",
+  "eventManagementEventAddedSuccess": "Event added successfully!",
+  "eventManagementTitleLabel": "Title",
+  "eventManagementTitleRequired": "Please enter an event title",
+  "eventManagementTitleHint": "Event Title",
+  "eventManagementDescriptionLabel": "Description",
+  "eventManagementDescriptionRequired": "Please enter a description",
+  "eventManagementDescriptionHint": "Event Description...",
+  "eventManagementEventDate": "Event Date",
+  "eventManagementEventTime": "Event Time",
+  "eventManagementChooseDate": "Choose date",
+  "eventManagementChooseTime": "Choose time",
+  "eventManagementAddEventButton": "Add event",
+  "eventManagementTimeAm": "AM",
+  "eventManagementTimePm": "PM"
 }
