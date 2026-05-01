@@ -61,6 +61,37 @@
   "eventManagementChooseDate": "اختر التاريخ",
   "eventManagementChooseTime": "اختر الوقت",
   "eventManagementAddEventButton": "إضافة فعالية",
+  "eventManagementEditEventTitle": "تعديل الفعالية",
+  "eventManagementUpdateEventButton": "تحديث الفعالية",
+  "eventManagementEventUpdatedSuccess": "تم تحديث الفعالية بنجاح!",
+  "eventDetailsTitle": "تفاصيل الفعالية",
+  "eventDetailsDescription": "الوصف",
+  "eventDetailsDeleteConfirmation": "هل أنت متأكد من حذف هذه الفعالية؟",
+  "eventDetailsDelete": "حذف",
+  "eventDetailsCancel": "إلغاء",
+  "eventDetailsDeletedSuccess": "تم حذف الفعالية بنجاح!",
+  "forgetPasswordTitle": "نسيت كلمة المرور",
+  "forgetPasswordSend": "إرسال",
+  "resetPasswordTitle": "إعادة تعيين كلمة المرور",
+  "resetPasswordCheckEmail": "تحقق من بريدك الإلكتروني",
+  "resetPasswordDescription": "لقد أرسلنا رابط إعادة تعيين كلمة المرور إلى {email}. يرجى التحقق من بريدك الوارد واتباع التعليمات لإعادة تعيين كلمة المرور.",
+  "@resetPasswordDescription": {
+    "placeholders": {
+      "email": {
+        "type": "String"
+      }
+    }
+  },
+  "resetPasswordBackToLogin": "العودة لتسجيل الدخول",
   "eventManagementTimeAm": "ص",
-  "eventManagementTimePm": "م"
+  "eventManagementTimePm": "م",
+  "onboardingSkip": "تخطي",
+  "onboardingNext": "التالي",
+  "onboardingGetStarted": "ابدأ الآن",
+  "onboardingTitle1": "اكتشف فعاليات تُلهمك",
+  "onboardingDescription1": "انغمس في عالم من الفعاليات المصممة لتناسب اهتماماتك الفريدة. سواء كنت مهتمًا بالموسيقى الحية أو ورش العمل الفنية أو التواصل المهني أو مجرد اكتشاف تجارب جديدة، لدينا ما يناسب الجميع. ستساعدك توصياتنا المختارة على الاستكشاف والتواصل وتحقيق أقصى استفادة من كل فرصة حولك.",
+  "onboardingTitle2": "تخطيط فعاليات بلا جهد",
+  "onboardingDescription2": "تخلص من عناء تنظيم الفعاليات مع أدوات التخطيط الشاملة. من إعداد الدعوات وإدارة الحضور إلى جدولة التذكيرات وتنسيق التفاصيل، نحن نتولى كل شيء. خطط بسهولة وركز على ما يهم – إنشاء تجربة لا تُنسى لك ولضيوفك.",
+  "onboardingTitle3": "تواصل مع الأصدقاء وشارك اللحظات",
+  "onboardingDescription3": "اجعل كل فعالية لا تُنسى من خلال مشاركة التجربة مع الآخرين. تتيح لك منصتنا دعوة الأصدقاء وإبقاء الجميع على اطلاع والاحتفال باللحظات معًا. التقط وشارك الحماس مع شبكتك، حتى تتمكن من إعادة عيش اللحظات المميزة والاعتزاز بالذكريات."
 }

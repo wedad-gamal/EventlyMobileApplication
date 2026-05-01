@@ -174,8 +174,86 @@ class AppLocalizationsAr extends AppLocalizations {
   String get eventManagementAddEventButton => 'إضافة فعالية';
 
   @override
+  String get eventManagementEditEventTitle => 'تعديل الفعالية';
+
+  @override
+  String get eventManagementUpdateEventButton => 'تحديث الفعالية';
+
+  @override
+  String get eventManagementEventUpdatedSuccess => 'تم تحديث الفعالية بنجاح!';
+
+  @override
+  String get eventDetailsTitle => 'تفاصيل الفعالية';
+
+  @override
+  String get eventDetailsDescription => 'الوصف';
+
+  @override
+  String get eventDetailsDeleteConfirmation =>
+      'هل أنت متأكد من حذف هذه الفعالية؟';
+
+  @override
+  String get eventDetailsDelete => 'حذف';
+
+  @override
+  String get eventDetailsCancel => 'إلغاء';
+
+  @override
+  String get eventDetailsDeletedSuccess => 'تم حذف الفعالية بنجاح!';
+
+  @override
+  String get forgetPasswordTitle => 'نسيت كلمة المرور';
+
+  @override
+  String get forgetPasswordSend => 'إرسال';
+
+  @override
+  String get resetPasswordTitle => 'إعادة تعيين كلمة المرور';
+
+  @override
+  String get resetPasswordCheckEmail => 'تحقق من بريدك الإلكتروني';
+
+  @override
+  String resetPasswordDescription(String email) {
+    return 'لقد أرسلنا رابط إعادة تعيين كلمة المرور إلى $email. يرجى التحقق من بريدك الوارد واتباع التعليمات لإعادة تعيين كلمة المرور.';
+  }
+
+  @override
+  String get resetPasswordBackToLogin => 'العودة لتسجيل الدخول';
+
+  @override
   String get eventManagementTimeAm => 'ص';
 
   @override
   String get eventManagementTimePm => 'م';
+
+  @override
+  String get onboardingSkip => 'تخطي';
+
+  @override
+  String get onboardingNext => 'التالي';
+
+  @override
+  String get onboardingGetStarted => 'ابدأ الآن';
+
+  @override
+  String get onboardingTitle1 => 'اكتشف فعاليات تُلهمك';
+
+  @override
+  String get onboardingDescription1 =>
+      'انغمس في عالم من الفعاليات المصممة لتناسب اهتماماتك الفريدة. سواء كنت مهتمًا بالموسيقى الحية أو ورش العمل الفنية أو التواصل المهني أو مجرد اكتشاف تجارب جديدة، لدينا ما يناسب الجميع. ستساعدك توصياتنا المختارة على الاستكشاف والتواصل وتحقيق أقصى استفادة من كل فرصة حولك.';
+
+  @override
+  String get onboardingTitle2 => 'تخطيط فعاليات بلا جهد';
+
+  @override
+  String get onboardingDescription2 =>
+      'تخلص من عناء تنظيم الفعاليات مع أدوات التخطيط الشاملة. من إعداد الدعوات وإدارة الحضور إلى جدولة التذكيرات وتنسيق التفاصيل، نحن نتولى كل شيء. خطط بسهولة وركز على ما يهم – إنشاء تجربة لا تُنسى لك ولضيوفك.';
+
+  @override
+  String get onboardingTitle3 => 'تواصل مع الأصدقاء وشارك اللحظات';
+
+  @override
+  String get onboardingDescription3 =>
+      'اجعل كل فعالية لا تُنسى من خلال مشاركة التجربة مع الآخرين. تتيح لك منصتنا دعوة الأصدقاء وإبقاء الجميع على اطلاع والاحتفال باللحظات معًا. التقط وشارك الحماس مع شبكتك، حتى تتمكن من إعادة عيش اللحظات المميزة والاعتزاز بالذكريات.';
 }

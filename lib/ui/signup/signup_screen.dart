@@ -2,6 +2,7 @@ import 'package:evently_app/core/l10n/app_localizations.dart';
 import 'package:evently_app/core/provider/app_config_provider.dart';
 import 'package:evently_app/core/utilites/data_validator.dart';
 import 'package:evently_app/data/firebase/firebase_auth_service.dart';
+import 'package:evently_app/ui/home/home_screen.dart';
 import 'package:evently_app/ui/login/login_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:icons_plus/icons_plus.dart';
@@ -56,82 +57,90 @@ class _SignupScreenState extends State<SignupScreen> {
                   color: theme.colorScheme.primary,
                 ),
               ),
-             Form(
-               key: formKey,
-               child: Column(
-                 spacing: 16,
-                 children: [
-                   TextFormField(
-                     validator: (value) => DataValidator.validateName(context, value),
-                     autovalidateMode: AutovalidateMode.onUserInteraction,
-                     controller: nameController,
-                     decoration: InputDecoration(
-                       hintText: localization.enterName,
-                       prefixIcon: Icon(Iconsax.user_outline),
-                     ),
-                   ),
-                   TextFormField(
-                     validator: (value) => DataValidator.validateEmail(context, value),
-                     autovalidateMode: AutovalidateMode.onUserInteraction,
-                     controller: emailController,
-                     decoration: InputDecoration(
-                       hintText: localization.enterEmail,
-                       prefixIcon: Icon(Iconsax.sms_outline),
-                     ),
-                   ),
-                   TextFormField(
-                     validator: (value) => DataValidator.validatePassword(context, value),
-                     autovalidateMode: AutovalidateMode.onUserInteraction,
-                     controller: passwordController,
-                     obscureText: isPasswordHidden,
-                     decoration: InputDecoration(
-                       hintText: localization.enterPassword,
-                       prefixIcon: Icon(Iconsax.lock_outline),
-                       suffixIcon: InkWell(
-                         onTap: () {
-                           setState(() {
-                             isPasswordHidden = !isPasswordHidden;
-                           });
-                         },
-                         child: Icon(
-                           isPasswordHidden
-                               ? Iconsax.eye_slash_outline
-                               : Iconsax.eye_outline,
-                         ),
-                       ),
-                     ),
-                   ),
-                   TextFormField(
-                     validator: (value) => DataValidator.validateConfirmPassword(context, value, passwordController.text),
-                     autovalidateMode: AutovalidateMode.onUserInteraction,
-                     controller: confirmPasswordController,
-                     obscureText: isConfirmPasswordHidden,
-                     decoration: InputDecoration(
-                       hintText: localization.confirmPassword,
-                       prefixIcon: Icon(Iconsax.lock_outline),
-                       suffixIcon: InkWell(
-                         onTap: () {
-                           setState(() {
-                             isConfirmPasswordHidden = !isConfirmPasswordHidden;
-                           });
-                         },
-                         child: Icon(
-                           isConfirmPasswordHidden
-                               ? Iconsax.eye_slash_outline
-                               : Iconsax.eye_outline,
-                         ),
-                       ),
-                     ),
-                   ),
-                 ]
-              )
-             ),
+              Form(
+                key: formKey,
+                child: Column(
+                  spacing: 16,
+                  children: [
+                    TextFormField(
+                      validator: (value) =>
+                          DataValidator.validateName(context, value),
+                      autovalidateMode: AutovalidateMode.onUserInteraction,
+                      controller: nameController,
+                      decoration: InputDecoration(
+                        hintText: localization.enterName,
+                        prefixIcon: Icon(Iconsax.user_outline),
+                      ),
+                    ),
+                    TextFormField(
+                      validator: (value) =>
+                          DataValidator.validateEmail(context, value),
+                      autovalidateMode: AutovalidateMode.onUserInteraction,
+                      controller: emailController,
+                      decoration: InputDecoration(
+                        hintText: localization.enterEmail,
+                        prefixIcon: Icon(Iconsax.sms_outline),
+                      ),
+                    ),
+                    TextFormField(
+                      validator: (value) =>
+                          DataValidator.validatePassword(context, value),
+                      autovalidateMode: AutovalidateMode.onUserInteraction,
+                      controller: passwordController,
+                      obscureText: isPasswordHidden,
+                      decoration: InputDecoration(
+                        hintText: localization.enterPassword,
+                        prefixIcon: Icon(Iconsax.lock_outline),
+                        suffixIcon: InkWell(
+                          onTap: () {
+                            setState(() {
+                              isPasswordHidden = !isPasswordHidden;
+                            });
+                          },
+                          child: Icon(
+                            isPasswordHidden
+                                ? Iconsax.eye_slash_outline
+                                : Iconsax.eye_outline,
+                          ),
+                        ),
+                      ),
+                    ),
+                    TextFormField(
+                      validator: (value) =>
+                          DataValidator.validateConfirmPassword(
+                            context,
+                            value,
+                            passwordController.text,
+                          ),
+                      autovalidateMode: AutovalidateMode.onUserInteraction,
+                      controller: confirmPasswordController,
+                      obscureText: isConfirmPasswordHidden,
+                      decoration: InputDecoration(
+                        hintText: localization.confirmPassword,
+                        prefixIcon: Icon(Iconsax.lock_outline),
+                        suffixIcon: InkWell(
+                          onTap: () {
+                            setState(() {
+                              isConfirmPasswordHidden =
+                                  !isConfirmPasswordHidden;
+                            });
+                          },
+                          child: Icon(
+                            isConfirmPasswordHidden
+                                ? Iconsax.eye_slash_outline
+                                : Iconsax.eye_outline,
+                          ),
+                        ),
+                      ),
+                    ),
+                  ],
+                ),
+              ),
               FilledButton(
                 style: FilledButton.styleFrom(
                   minimumSize: Size(double.infinity, 56),
                 ),
                 onPressed: () async {
-
                   if (isLoading) return;
 
                   // 2. ONLY start loading if the form is actually valid
@@ -142,17 +151,22 @@ class _SignupScreenState extends State<SignupScreen> {
 
                     try {
                       FirebaseAuthService authService = FirebaseAuthService();
-                      var user = await authService.createAccountWithEmailAndPassword(
-                        emailController.text.trim(), // Best practice: trim whitespace
-                        passwordController.text,
-                        nameController.text.trim(),
-                      );
+                      var user = await authService
+                          .createAccountWithEmailAndPassword(
+                            emailController.text
+                                .trim(), // Best practice: trim whitespace
+                            passwordController.text,
+                            nameController.text.trim(),
+                          );
 
                       // 3. Logic after the async call
                       if (user != null) {
                         // Successful signup
                         if (mounted) {
-                          Navigator.pushReplacementNamed(context, LoginScreen.routeName);
+                          Navigator.pushReplacementNamed(
+                            context,
+                            LoginScreen.routeName,
+                          );
                         }
                       } else {
                         // Handle failed signup (e.g., show a SnackBar)
@@ -168,7 +182,11 @@ class _SignupScreenState extends State<SignupScreen> {
                     }
                   }
                 },
-                child: isLoading? CircularProgressIndicator(color: theme.colorScheme.surface,):Text(localization.signUp),
+                child: isLoading
+                    ? CircularProgressIndicator(
+                        color: theme.colorScheme.surface,
+                      )
+                    : Text(localization.signUp),
               ),
               Row(
                 mainAxisAlignment: .center,
@@ -212,7 +230,23 @@ class _SignupScreenState extends State<SignupScreen> {
                 ],
               ),
               ElevatedButton(
-                onPressed: () {},
+                onPressed: () async {
+                  if (isLoading) return;
+                  setState(() {
+                    isLoading = true;
+                  });
+                  FirebaseAuthService authService = FirebaseAuthService();
+                  var user = await authService.signInWithGoogle();
+                  setState(() {
+                    isLoading = false;
+                  });
+                  if (user != null && mounted) {
+                    Navigator.pushReplacementNamed(
+                      context,
+                      HomeScreen.routeName,
+                    );
+                  }
+                },
                 child: Row(
                   mainAxisAlignment: .center,
                   children: [

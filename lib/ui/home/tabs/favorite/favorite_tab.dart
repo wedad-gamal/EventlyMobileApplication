@@ -6,7 +6,7 @@ import 'package:evently_app/ui/home/widgets/event_card.dart';
 import 'package:flutter/material.dart';
 
 class FavoriteTab extends StatelessWidget {
-  FirebaseEventDatabase database = FirebaseEventDatabase();
+  final FirebaseEventDatabase database = FirebaseEventDatabase();
   FavoriteTab({super.key});
 
   @override

@@ -1,4 +1,3 @@
-import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:evently_app/core/l10n/app_localizations.dart';
 import 'package:evently_app/core/provider/app_config_provider.dart';
 import 'package:evently_app/core/utilites/appDialog.dart';
@@ -33,6 +32,11 @@ class _EventManagementScreenState extends State<EventManagementScreen> {
   DateTime? _selectedDate;
   TimeOfDay? _selectedTime;
 
+  /// The event being edited, or null if creating a new event.
+  Event? _editingEvent;
+  bool _isEditMode = false;
+  bool _initialized = false;
+
   @override
   void initState() {
     super.initState();
@@ -40,6 +44,38 @@ class _EventManagementScreenState extends State<EventManagementScreen> {
       categories.add(category);
     }
     selectedCategory = categories.first;
+  }
+
+  @override
+  void didChangeDependencies() {
+    super.didChangeDependencies();
+    if (!_initialized) {
+      _initialized = true;
+      // Retrieve the optional Event passed as a route argument
+      final args = ModalRoute.of(context)?.settings.arguments;
+      if (args is Event) {
+        _editingEvent = args;
+        _isEditMode = true;
+        _populateFieldsFromEvent(args);
+      }
+    }
+  }
+
+  /// Pre-populate all form fields with data from the existing event.
+  void _populateFieldsFromEvent(Event event) {
+    _titleController.text = event.title;
+    _descriptionController.text = event.description;
+    _selectedDate = event.date;
+    _selectedTime = TimeOfDay(
+      hour: event.time.hour,
+      minute: event.time.minute,
+    );
+
+    // Match the category from the event
+    final matchIndex = categories.indexWhere((c) => c.id == event.categoryId);
+    if (matchIndex != -1) {
+      selectedCategory = categories[matchIndex];
+    }
   }
 
   @override
@@ -112,16 +148,23 @@ class _EventManagementScreenState extends State<EventManagementScreen> {
       );
 
       final event = Event(
-        id: '',
+        id: _isEditMode ? _editingEvent!.id : '',
         title: _titleController.text.trim(),
         description: _descriptionController.text.trim(),
         date: _selectedDate!,
         time: eventTime,
         categoryId: selectedCategory.id,
-        userId: FirebaseAuth.instance.currentUser?.uid ?? '',
+        userId: _isEditMode
+            ? _editingEvent!.userId
+            : (FirebaseAuth.instance.currentUser?.uid ?? ''),
+        isFavorite: _isEditMode ? _editingEvent!.isFavorite : false,
       );
 
-      createEvent(event);
+      if (_isEditMode) {
+        _updateEvent(event);
+      } else {
+        _createEvent(event);
+      }
     }
   }
 
@@ -129,8 +172,16 @@ class _EventManagementScreenState extends State<EventManagementScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text(l10n.eventManagementAddEventTitle),
-        leading: CustomBackButton(),
+        title: Text(
+          _isEditMode
+              ? l10n.eventManagementEditEventTitle
+              : l10n.eventManagementAddEventTitle,
+        ),
+        leading: CustomBackButton(
+          onPress: () {
+            Navigator.pop(context);
+          },
+        ),
         leadingWidth: 80,
       ),
       body: Form(
@@ -152,7 +203,7 @@ class _EventManagementScreenState extends State<EventManagementScreen> {
               SizedBox(height: 24),
               _buildFormSection(context),
               _buildDateTimeSection(context),
-              _buildAddEventButton(context),
+              _buildSubmitButton(context),
             ],
           ),
         ),
@@ -277,14 +328,18 @@ class _EventManagementScreenState extends State<EventManagementScreen> {
     );
   }
 
-  /// ── Add Event Button ───────────────────────────────────────────────────────
-  Widget _buildAddEventButton(BuildContext context) {
+  /// ── Submit Button (Add / Update) ───────────────────────────────────────────
+  Widget _buildSubmitButton(BuildContext context) {
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 16),
       child: FilledButton(
         style: FilledButton.styleFrom(minimumSize: Size(double.infinity, 0)),
         onPressed: _submitEvent,
-        child: Text(l10n.eventManagementAddEventButton),
+        child: Text(
+          _isEditMode
+              ? l10n.eventManagementUpdateEventButton
+              : l10n.eventManagementAddEventButton,
+        ),
       ),
     );
   }
@@ -317,7 +372,7 @@ class _EventManagementScreenState extends State<EventManagementScreen> {
     );
   }
 
-  Future<void> createEvent(Event event) async {
+  Future<void> _createEvent(Event event) async {
     AppDialog.showLoadingDialog(context, "Loading...");
     try {
       final firebaseEventDatabase = FirebaseEventDatabase();
@@ -334,6 +389,31 @@ class _EventManagementScreenState extends State<EventManagementScreen> {
       }
     } catch (e) {
       print("Failed to create event: $e");
+      AppDialog.showDialogMessage(
+        context,
+        "An error has occured - ${e.toString()}",
+        negativeActionText: "ok",
+      );
+    }
+  }
+
+  Future<void> _updateEvent(Event event) async {
+    AppDialog.showLoadingDialog(context, "Loading...");
+    try {
+      final firebaseEventDatabase = FirebaseEventDatabase();
+      await firebaseEventDatabase.updateEvent(event);
+      if (mounted) {
+        Navigator.of(context).pop();
+        Navigator.pushReplacementNamed(context, HomeScreen.routeName);
+        ScaffoldMessenger.of(context).showSnackBar(
+          SnackBar(
+            backgroundColor: Theme.of(context).colorScheme.primary,
+            content: Text(l10n.eventManagementEventUpdatedSuccess),
+          ),
+        );
+      }
+    } catch (e) {
+      print("Failed to update event: $e");
       AppDialog.showDialogMessage(
         context,
         "An error has occured - ${e.toString()}",

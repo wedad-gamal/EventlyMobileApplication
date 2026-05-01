@@ -13,7 +13,7 @@ import 'package:icons_plus/icons_plus.dart';
 import 'package:provider/provider.dart';
 
 class HomeTab extends StatefulWidget {
-  HomeTab({super.key});
+  const HomeTab({super.key});
 
   @override
   State<HomeTab> createState() => _HomeTabState();

@@ -422,6 +422,96 @@ abstract class AppLocalizations {
   /// **'Add event'**
   String get eventManagementAddEventButton;
 
+  /// No description provided for @eventManagementEditEventTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Edit Event'**
+  String get eventManagementEditEventTitle;
+
+  /// No description provided for @eventManagementUpdateEventButton.
+  ///
+  /// In en, this message translates to:
+  /// **'Update event'**
+  String get eventManagementUpdateEventButton;
+
+  /// No description provided for @eventManagementEventUpdatedSuccess.
+  ///
+  /// In en, this message translates to:
+  /// **'Event updated successfully!'**
+  String get eventManagementEventUpdatedSuccess;
+
+  /// No description provided for @eventDetailsTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Event details'**
+  String get eventDetailsTitle;
+
+  /// No description provided for @eventDetailsDescription.
+  ///
+  /// In en, this message translates to:
+  /// **'Description'**
+  String get eventDetailsDescription;
+
+  /// No description provided for @eventDetailsDeleteConfirmation.
+  ///
+  /// In en, this message translates to:
+  /// **'Are you sure you want to delete this event?'**
+  String get eventDetailsDeleteConfirmation;
+
+  /// No description provided for @eventDetailsDelete.
+  ///
+  /// In en, this message translates to:
+  /// **'Delete'**
+  String get eventDetailsDelete;
+
+  /// No description provided for @eventDetailsCancel.
+  ///
+  /// In en, this message translates to:
+  /// **'Cancel'**
+  String get eventDetailsCancel;
+
+  /// No description provided for @eventDetailsDeletedSuccess.
+  ///
+  /// In en, this message translates to:
+  /// **'Event deleted successfully!'**
+  String get eventDetailsDeletedSuccess;
+
+  /// No description provided for @forgetPasswordTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Forget Password'**
+  String get forgetPasswordTitle;
+
+  /// No description provided for @forgetPasswordSend.
+  ///
+  /// In en, this message translates to:
+  /// **'Send'**
+  String get forgetPasswordSend;
+
+  /// No description provided for @resetPasswordTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Reset Password'**
+  String get resetPasswordTitle;
+
+  /// No description provided for @resetPasswordCheckEmail.
+  ///
+  /// In en, this message translates to:
+  /// **'Check your email'**
+  String get resetPasswordCheckEmail;
+
+  /// No description provided for @resetPasswordDescription.
+  ///
+  /// In en, this message translates to:
+  /// **'We have sent a password reset link to {email}. Please check your inbox and follow the instructions to reset your password.'**
+  String resetPasswordDescription(String email);
+
+  /// No description provided for @resetPasswordBackToLogin.
+  ///
+  /// In en, this message translates to:
+  /// **'Back to Login'**
+  String get resetPasswordBackToLogin;
+
   /// No description provided for @eventManagementTimeAm.
   ///
   /// In en, this message translates to:
@@ -433,6 +523,60 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'PM'**
   String get eventManagementTimePm;
+
+  /// No description provided for @onboardingSkip.
+  ///
+  /// In en, this message translates to:
+  /// **'Skip'**
+  String get onboardingSkip;
+
+  /// No description provided for @onboardingNext.
+  ///
+  /// In en, this message translates to:
+  /// **'Next'**
+  String get onboardingNext;
+
+  /// No description provided for @onboardingGetStarted.
+  ///
+  /// In en, this message translates to:
+  /// **'Get started'**
+  String get onboardingGetStarted;
+
+  /// Title for the first onboarding page
+  ///
+  /// In en, this message translates to:
+  /// **'Find Events That Inspire You'**
+  String get onboardingTitle1;
+
+  /// Description for the first onboarding page
+  ///
+  /// In en, this message translates to:
+  /// **'Dive into a world of events crafted to fit your unique interests. Whether you\'re into live music, art workshops, professional networking, or simply discovering new experiences, we have something for everyone. Our curated recommendations will help you explore, connect, and make the most of every opportunity around you.'**
+  String get onboardingDescription1;
+
+  /// Title for the second onboarding page
+  ///
+  /// In en, this message translates to:
+  /// **'Effortless Event Planning'**
+  String get onboardingTitle2;
+
+  /// Description for the second onboarding page
+  ///
+  /// In en, this message translates to:
+  /// **'Take the hassle out of organizing events with our all-in-one planning tools. From setting up invites and managing RSVPs to scheduling reminders and coordinating details, we\'ve got you covered. Plan with ease and focus on what matters – creating an unforgettable experience for you and your guests.'**
+  String get onboardingDescription2;
+
+  /// Title for the third onboarding page
+  ///
+  /// In en, this message translates to:
+  /// **'Connect with Friends & Share Moments'**
+  String get onboardingTitle3;
+
+  /// Description for the third onboarding page
+  ///
+  /// In en, this message translates to:
+  /// **'Make every event memorable by sharing the experience with others. Our platform lets you invite friends, keep everyone in the loop, and celebrate moments together. Capture and share the excitement with your network, so you can relive the highlights and cherish the memories.'**
+  String get onboardingDescription3;
 }
 
 class _AppLocalizationsDelegate

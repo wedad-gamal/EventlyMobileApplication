@@ -1,14 +1,10 @@
 import 'package:evently_app/core/l10n/app_localizations.dart';
-import 'package:evently_app/core/provider/app_config_provider.dart';
-import 'package:evently_app/data/firebase/firebase_auth_service.dart';
-import 'package:evently_app/data/models/category.dart';
 import 'package:evently_app/ui/event_management/event_management_screen.dart';
 import 'package:evently_app/ui/home/tabs/favorite/favorite_tab.dart';
 import 'package:evently_app/ui/home/tabs/home/home_tab.dart';
 import 'package:evently_app/ui/home/tabs/profile/profile_tab.dart';
 import 'package:flutter/material.dart';
 import 'package:icons_plus/icons_plus.dart';
-import 'package:provider/provider.dart';
 
 class HomeScreen extends StatefulWidget {
   static const String routeName = "/home";
@@ -19,24 +15,14 @@ class HomeScreen extends StatefulWidget {
 }
 
 class _HomeScreenState extends State<HomeScreen> {
-  final List<Widget> tabs = [
-    HomeTab(),
-    FavoriteTab(),
-    ProfileTab()
-  ];
+  final List<Widget> tabs = [HomeTab(), FavoriteTab(), ProfileTab()];
   int selectedIndex = 0;
-  
 
   @override
   Widget build(BuildContext context) {
     final localization = AppLocalizations.of(context)!;
-    FirebaseAuthService authService = FirebaseAuthService();
-    final provider = context.watch<AppConfigProvider>();
-    var theme = Theme.of(context);
-    var user = authService.currentUser;
 
     return Scaffold(
-     
       body: tabs[selectedIndex],
       floatingActionButton: Container(
         decoration: BoxDecoration(

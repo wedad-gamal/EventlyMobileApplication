@@ -1,8 +1,7 @@
-import 'package:evently_app/core/l10n/app_localizations.dart';
 import 'package:evently_app/core/provider/app_config_provider.dart';
 import 'package:evently_app/core/utilites/appDialog.dart';
 import 'package:evently_app/data/firebase/firebase_auth_service.dart';
-import 'package:evently_app/ui/home/home_screen.dart';
+import 'package:evently_app/ui/widgets/auth_wrapper.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
@@ -11,7 +10,6 @@ class ProfileTab extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final localization = AppLocalizations.of(context)!;
     FirebaseAuthService authService = FirebaseAuthService();
     final provider = context.watch<AppConfigProvider>();
     var theme = Theme.of(context);
@@ -72,20 +70,22 @@ class ProfileTab extends StatelessWidget {
                 ),
               ),
               GestureDetector(
-                onTap: (){
-                   AppDialog.showDialogMessage(
+                onTap: () {
+                  AppDialog.showDialogMessage(
+                    context,
+                    "Are you sure?",
+                    postActionText: "Cancel",
+                    negativeActionText: "Ok",
+                    onNegativeAction: () async {
+                      await authService.logout();
+                      if (context.mounted) {
+                        Navigator.pushReplacementNamed(
                           context,
-                          "Are you sure?",
-                          postActionText: "Cancel",
-                          negativeActionText: "Ok",
-                          onNegativeAction: () async{
-                            Navigator.pushReplacementNamed(
-                              context,
-                              HomeScreen.routeName,
-                            );
-                            authService.logout();
-                          },
+                          AuthWrapper.routeName,
                         );
+                      }
+                    },
+                  );
                 },
                 child: Container(
                   padding: EdgeInsets.all(10),
