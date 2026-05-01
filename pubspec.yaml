@@ -42,6 +42,8 @@ dependencies:
   icons_plus: ^5.0.0
   firebase_core: ^4.6.0
   firebase_auth: ^6.3.0
+  cloud_firestore: ^6.3.0
+  google_sign_in: ^6.2.1
 
 dev_dependencies:
   flutter_test:
@@ -72,7 +74,9 @@ flutter:
   assets:
     - assets/images/
     - assets/images/dark_images/
+    - assets/images/dark_images/onboarding/
     - assets/images/light_images/
+    - assets/images/light_images/onboarding/
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/to/resolution-aware-images

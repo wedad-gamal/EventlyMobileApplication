@@ -1,14 +1,13 @@
 import 'package:evently_app/core/l10n/app_localizations.dart';
 import 'package:evently_app/core/provider/app_config_provider.dart';
 import 'package:evently_app/core/theme/app_colors.dart';
-import 'package:evently_app/ui/login/login_screen.dart';
+import 'package:evently_app/ui/on_boarding/on_boarding_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
 class AppSetupScreen extends StatelessWidget {
   static const String routeName = "/app_setup";
   const AppSetupScreen({super.key});
-
 
   @override
   Widget build(BuildContext context) {
@@ -29,12 +28,16 @@ class AppSetupScreen extends StatelessWidget {
                 mainAxisAlignment: .center,
                 children: [
                   Image.asset(
-                    "assets/images/logo_${provider.isDark?"dark": "light"}.png",
+                    "assets/images/logo_${provider.isDark ? "dark" : "light"}.png",
                     width: width * 0.4,
                   ),
                 ],
               ),
-              Expanded(child: Image.asset("assets/images/app_setup_${provider.isDark?"dark": "light"}.png")),
+              Expanded(
+                child: Image.asset(
+                  "assets/images/app_setup_${provider.isDark ? "dark" : "light"}.png",
+                ),
+              ),
               Text(
                 localization.personalizeTitle,
                 style: TextTheme.of(context).titleLarge,
@@ -56,7 +59,9 @@ class AppSetupScreen extends StatelessWidget {
                     Text(
                       localization.english,
                       style: TextTheme.of(context).labelMedium?.copyWith(
-                        color: provider.isEnglish? Theme.of(context).colorScheme.surface: Theme.of(context).colorScheme.primary,
+                        color: provider.isEnglish
+                            ? Theme.of(context).colorScheme.surface
+                            : Theme.of(context).colorScheme.primary,
                       ),
                     ),
                     provider.isEnglish,
@@ -70,7 +75,9 @@ class AppSetupScreen extends StatelessWidget {
                     Text(
                       localization.arabic,
                       style: TextTheme.of(context).labelMedium?.copyWith(
-                        color: provider.isEnglish? Theme.of(context).colorScheme.primary: Theme.of(context).colorScheme.surface,
+                        color: provider.isEnglish
+                            ? Theme.of(context).colorScheme.primary
+                            : Theme.of(context).colorScheme.surface,
                       ),
                     ),
                     !provider.isEnglish,
@@ -117,7 +124,10 @@ class AppSetupScreen extends StatelessWidget {
               ),
               FilledButton(
                 onPressed: () {
-                  Navigator.pushReplacementNamed(context, LoginScreen.routeName);
+                  Navigator.pushReplacementNamed(
+                    context,
+                    OnBoardingScreen.routeName,
+                  );
                 },
                 child: Text(localization.letsStart),
                 style: FilledButton.styleFrom(

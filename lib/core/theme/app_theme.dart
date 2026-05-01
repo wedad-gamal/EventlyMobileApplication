@@ -13,6 +13,7 @@ class AppTheme {
       onError: AppColors.lightInputs,
       surface: AppColors.lightBackground,
       onSurface: AppColors.lightMainText,
+      outline: AppColors.lightStroke,
     ),
     bottomNavigationBarTheme: BottomNavigationBarThemeData(
       backgroundColor: AppColors.lightInputs,
@@ -55,8 +56,8 @@ class AppTheme {
           fontSize: 14,
           color: AppColors.lightMain,
           decoration: TextDecoration.underline,
-        )
-      )
+        ),
+      ),
     ),
     floatingActionButtonTheme: FloatingActionButtonThemeData(
       backgroundColor: AppColors.lightMain,
@@ -68,12 +69,12 @@ class AppTheme {
       style: ElevatedButton.styleFrom(
         backgroundColor: AppColors.lightInputs,
         foregroundColor: AppColors.lightMain,
-        padding: EdgeInsets.all(16),
+        padding: EdgeInsets.all(0),
         textStyle: TextStyle(fontSize: 20, fontWeight: FontWeight.w400),
         elevation: 0,
         shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(16)),
         side: BorderSide(width: 1, color: AppColors.lightStroke),
-      )
+      ),
     ),
     textTheme: TextTheme(
       titleLarge: TextStyle(
@@ -126,7 +127,7 @@ class AppTheme {
       fillColor: AppColors.lightInputs,
       filled: true,
       contentPadding: EdgeInsets.all(16),
-      hintStyle: TextStyle(fontSize: 14,color: AppColors.lightSecText),
+      hintStyle: TextStyle(fontSize: 14, color: AppColors.lightSecText),
       prefixIconColor: AppColors.lightDisable,
       suffixIconColor: AppColors.lightDisable,
       enabledBorder: OutlineInputBorder(
@@ -155,15 +156,15 @@ class AppTheme {
     brightness: Brightness.dark,
     colorScheme: ColorScheme(
       brightness: Brightness.dark,
-      primary: AppColors.darkMain,         // #457AED
-      onPrimary: AppColors.darkMainText,    // #FFFFFF
-      secondary: AppColors.darkMainText,    // #FFFFFF
-      onSecondary: AppColors.darkBackground, // #000F30
-      error: AppColors.darkRed,            // #FF3232
+      primary: AppColors.darkMain, // #457AED
+      onPrimary: AppColors.darkInputs, // #FFFFFF
+      secondary: AppColors.darkMainText, // #FFFFFF
+      onSecondary: AppColors.darkInputs, // #000F30
+      error: AppColors.darkRed, // #FF3232
       onError: AppColors.darkMainText,
-      surface: AppColors.darkBackground,   // #000F30
+      surface: AppColors.darkBackground, // #000F30
       onSurface: AppColors.darkMainText,
-      outline: AppColors.darkStroke,       // #002D8F
+      outline: AppColors.darkStroke,
     ),
     bottomNavigationBarTheme: BottomNavigationBarThemeData(
       backgroundColor: AppColors.darkInputs,
@@ -201,15 +202,14 @@ class AppTheme {
       ),
     ),
     textButtonTheme: TextButtonThemeData(
-        style: TextButton.styleFrom(
-          padding: EdgeInsets.all(0),
-            textStyle: TextStyle(
-              fontSize: 14,
-              color: AppColors.darkMain,
-              decoration: TextDecoration.underline,
-              
-            )
-        )
+      style: TextButton.styleFrom(
+        padding: EdgeInsets.all(0),
+        textStyle: TextStyle(
+          fontSize: 14,
+          color: AppColors.darkMain,
+          decoration: TextDecoration.underline,
+        ),
+      ),
     ),
     floatingActionButtonTheme: const FloatingActionButtonThemeData(
       backgroundColor: AppColors.darkMain,
@@ -218,16 +218,17 @@ class AppTheme {
       shape: CircleBorder(),
     ),
     elevatedButtonTheme: ElevatedButtonThemeData(
-        style: ElevatedButton.styleFrom(
-          backgroundColor: AppColors.darkInputs,
-          foregroundColor: AppColors.darkMain,
-          padding: EdgeInsets.all(16),
-          textStyle: TextStyle(fontSize: 20, fontWeight: FontWeight.w400),
-          elevation: 0,
-          shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(16)),
-          side: BorderSide(width: 1, color: AppColors.darkStroke),
-        )
+      style: ElevatedButton.styleFrom(
+        backgroundColor: AppColors.darkInputs,
+        foregroundColor: AppColors.darkMain,
+        padding: EdgeInsets.all(16),
+        textStyle: TextStyle(fontSize: 20, fontWeight: FontWeight.w400),
+        elevation: 0,
+        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(16)),
+        side: BorderSide(width: 1, color: AppColors.darkStroke),
+      ),
     ),
+
     textTheme: TextTheme(
       titleLarge: TextStyle(
         fontSize: 24,
@@ -279,7 +280,7 @@ class AppTheme {
       fillColor: AppColors.darkInputs,
       filled: true,
       contentPadding: EdgeInsets.all(16),
-      hintStyle: TextStyle(fontSize: 14,color: AppColors.darkSecText),
+      hintStyle: TextStyle(fontSize: 14, color: AppColors.darkSecText),
       prefixIconColor: AppColors.darkDisable,
       suffixIconColor: AppColors.darkDisable,
       enabledBorder: OutlineInputBorder(

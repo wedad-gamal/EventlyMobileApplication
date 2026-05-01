@@ -1,5 +1,13 @@
+import 'package:evently_app/core/l10n/app_localizations.dart';
 import 'package:evently_app/core/provider/app_config_provider.dart';
+import 'package:evently_app/core/utilites/appDialog.dart';
+import 'package:evently_app/core/utilites/extension.dart';
+import 'package:evently_app/data/firebase/firebase_event_database.dart';
 import 'package:evently_app/data/models/category.dart';
+import 'package:evently_app/data/models/event.dart';
+import 'package:evently_app/ui/home/home_screen.dart';
+import 'package:evently_app/ui/home/widgets/category_tabs.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:evently_app/ui/widgets/custom_back_button.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
@@ -15,6 +23,7 @@ class EventManagementScreen extends StatefulWidget {
 class _EventManagementScreenState extends State<EventManagementScreen> {
   late Category selectedCategory;
   List<Category> categories = [];
+  AppLocalizations get l10n => AppLocalizations.of(context)!;
 
   final TextEditingController _titleController = TextEditingController();
   final TextEditingController _descriptionController = TextEditingController();
@@ -23,13 +32,50 @@ class _EventManagementScreenState extends State<EventManagementScreen> {
   DateTime? _selectedDate;
   TimeOfDay? _selectedTime;
 
+  /// The event being edited, or null if creating a new event.
+  Event? _editingEvent;
+  bool _isEditMode = false;
+  bool _initialized = false;
+
   @override
   void initState() {
     super.initState();
-    for (var category in allCategories) {
+    for (final category in allCategories.values) {
       categories.add(category);
     }
     selectedCategory = categories.first;
+  }
+
+  @override
+  void didChangeDependencies() {
+    super.didChangeDependencies();
+    if (!_initialized) {
+      _initialized = true;
+      // Retrieve the optional Event passed as a route argument
+      final args = ModalRoute.of(context)?.settings.arguments;
+      if (args is Event) {
+        _editingEvent = args;
+        _isEditMode = true;
+        _populateFieldsFromEvent(args);
+      }
+    }
+  }
+
+  /// Pre-populate all form fields with data from the existing event.
+  void _populateFieldsFromEvent(Event event) {
+    _titleController.text = event.title;
+    _descriptionController.text = event.description;
+    _selectedDate = event.date;
+    _selectedTime = TimeOfDay(
+      hour: event.time.hour,
+      minute: event.time.minute,
+    );
+
+    // Match the category from the event
+    final matchIndex = categories.indexWhere((c) => c.id == event.categoryId);
+    if (matchIndex != -1) {
+      selectedCategory = categories[matchIndex];
+    }
   }
 
   @override
@@ -44,15 +90,7 @@ class _EventManagementScreenState extends State<EventManagementScreen> {
       context: context,
       initialDate: _selectedDate ?? DateTime.now(),
       firstDate: DateTime.now(),
-      lastDate: DateTime(2100),
-      builder: (context, child) {
-        return Theme(
-          data: Theme.of(context).copyWith(
-            colorScheme: Theme.of(context).colorScheme,
-          ),
-          child: child!,
-        );
-      },
+      lastDate: DateTime.now().add(Duration(days: 365 * 2)),
     );
     if (picked != null) {
       setState(() => _selectedDate = picked);
@@ -65,9 +103,9 @@ class _EventManagementScreenState extends State<EventManagementScreen> {
       initialTime: _selectedTime ?? TimeOfDay.now(),
       builder: (context, child) {
         return Theme(
-          data: Theme.of(context).copyWith(
-            colorScheme: Theme.of(context).colorScheme,
-          ),
+          data: Theme.of(
+            context,
+          ).copyWith(colorScheme: Theme.of(context).colorScheme),
           child: child!,
         );
       },
@@ -77,14 +115,12 @@ class _EventManagementScreenState extends State<EventManagementScreen> {
     }
   }
 
-  String _formatDate(DateTime date) {
-    return '${date.day}/${date.month}/${date.year}';
-  }
-
   String _formatTime(TimeOfDay time) {
     final hour = time.hourOfPeriod == 0 ? 12 : time.hourOfPeriod;
     final minute = time.minute.toString().padLeft(2, '0');
-    final period = time.period == DayPeriod.am ? 'AM' : 'PM';
+    final period = time.period == DayPeriod.am
+        ? l10n.eventManagementTimeAm
+        : l10n.eventManagementTimePm;
     return '$hour:$minute $period';
   }
 
@@ -92,20 +128,43 @@ class _EventManagementScreenState extends State<EventManagementScreen> {
     if (_formKey.currentState?.validate() ?? false) {
       if (_selectedDate == null) {
         ScaffoldMessenger.of(context).showSnackBar(
-          SnackBar(content: Text('Please choose a date')),
+          SnackBar(content: Text(l10n.eventManagementPleaseChooseDate)),
         );
         return;
       }
       if (_selectedTime == null) {
         ScaffoldMessenger.of(context).showSnackBar(
-          SnackBar(content: Text('Please choose a time')),
+          SnackBar(content: Text(l10n.eventManagementPleaseChooseTime)),
         );
         return;
       }
-      // TODO: Submit event to Firebase or backend
-      ScaffoldMessenger.of(context).showSnackBar(
-        SnackBar(content: Text('Event added successfully!')),
+
+      final eventTime = DateTime(
+        _selectedDate!.year,
+        _selectedDate!.month,
+        _selectedDate!.day,
+        _selectedTime!.hour,
+        _selectedTime!.minute,
       );
+
+      final event = Event(
+        id: _isEditMode ? _editingEvent!.id : '',
+        title: _titleController.text.trim(),
+        description: _descriptionController.text.trim(),
+        date: _selectedDate!,
+        time: eventTime,
+        categoryId: selectedCategory.id,
+        userId: _isEditMode
+            ? _editingEvent!.userId
+            : (FirebaseAuth.instance.currentUser?.uid ?? ''),
+        isFavorite: _isEditMode ? _editingEvent!.isFavorite : false,
+      );
+
+      if (_isEditMode) {
+        _updateEvent(event);
+      } else {
+        _createEvent(event);
+      }
     }
   }
 
@@ -113,8 +172,16 @@ class _EventManagementScreenState extends State<EventManagementScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text("Add Event"),
-        leading: CustomBackButton(),
+        title: Text(
+          _isEditMode
+              ? l10n.eventManagementEditEventTitle
+              : l10n.eventManagementAddEventTitle,
+        ),
+        leading: CustomBackButton(
+          onPress: () {
+            Navigator.pop(context);
+          },
+        ),
         leadingWidth: 80,
       ),
       body: Form(
@@ -124,12 +191,19 @@ class _EventManagementScreenState extends State<EventManagementScreen> {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               _buildCategoryCoverImage(context),
-              _buildCategoriesTabBar(context),
+              CategoryTabs(
+                categories: categories,
+                tabOnPress: (index) {
+                  setState(() {
+                    selectedCategory = categories[index];
+                  });
+                },
+                selectedCategory: selectedCategory,
+              ),
               SizedBox(height: 24),
               _buildFormSection(context),
               _buildDateTimeSection(context),
-              _buildAddEventButton(context),
-
+              _buildSubmitButton(context),
             ],
           ),
         ),
@@ -146,7 +220,7 @@ class _EventManagementScreenState extends State<EventManagementScreen> {
         children: [
           // Title Field
           Text(
-            'Title',
+            l10n.eventManagementTitleLabel,
             style: Theme.of(context).textTheme.titleMedium?.copyWith(
               fontWeight: FontWeight.w600,
               color: Theme.of(context).colorScheme.secondary,
@@ -158,19 +232,19 @@ class _EventManagementScreenState extends State<EventManagementScreen> {
             textInputAction: TextInputAction.next,
             validator: (value) {
               if (value == null || value.trim().isEmpty) {
-                return 'Please enter an event title';
+                return l10n.eventManagementTitleRequired;
               }
               return null;
             },
             decoration: InputDecoration(
-              hintText: 'Event Title',
+              hintText: l10n.eventManagementTitleHint,
             ),
           ),
           SizedBox(height: 20),
 
           // Description Field
           Text(
-            'Description',
+            l10n.eventManagementDescriptionLabel,
             style: Theme.of(context).textTheme.titleMedium?.copyWith(
               fontWeight: FontWeight.w600,
               color: Theme.of(context).colorScheme.secondary,
@@ -183,12 +257,12 @@ class _EventManagementScreenState extends State<EventManagementScreen> {
             textInputAction: TextInputAction.done,
             validator: (value) {
               if (value == null || value.trim().isEmpty) {
-                return 'Please enter a description';
+                return l10n.eventManagementDescriptionRequired;
               }
               return null;
             },
             decoration: InputDecoration(
-              hintText: 'Event Description...',
+              hintText: l10n.eventManagementDescriptionHint,
             ),
           ),
         ],
@@ -205,19 +279,19 @@ class _EventManagementScreenState extends State<EventManagementScreen> {
           _buildDateTimeTile(
             context,
             icon: Icons.calendar_month_outlined,
-            label: 'Event Date',
-            valueText:
-            _selectedDate != null ? _formatDate(_selectedDate!) : null,
-            placeholder: 'Choose date',
+            label: l10n.eventManagementEventDate,
+            valueText: _selectedDate?.formatDate(),
+            placeholder: l10n.eventManagementChooseDate,
             onTap: _pickDate,
           ),
           _buildDateTimeTile(
             context,
             icon: Icons.access_time_outlined,
-            label: 'Event Time',
-            valueText:
-            _selectedTime != null ? _formatTime(_selectedTime!) : null,
-            placeholder: 'Choose time',
+            label: l10n.eventManagementEventTime,
+            valueText: _selectedTime != null
+                ? _formatTime(_selectedTime!)
+                : null,
+            placeholder: l10n.eventManagementChooseTime,
             onTap: _pickTime,
           ),
         ],
@@ -226,13 +300,13 @@ class _EventManagementScreenState extends State<EventManagementScreen> {
   }
 
   Widget _buildDateTimeTile(
-      BuildContext context, {
-        required IconData icon,
-        required String label,
-        required String? valueText,
-        required String placeholder,
-        required VoidCallback onTap,
-      }) {
+    BuildContext context, {
+    required IconData icon,
+    required String label,
+    required String? valueText,
+    required String placeholder,
+    required VoidCallback onTap,
+  }) {
     return Row(
       children: [
         Icon(
@@ -240,7 +314,7 @@ class _EventManagementScreenState extends State<EventManagementScreen> {
           size: 22,
           color: Theme.of(context).colorScheme.secondary.withAlpha(99),
         ),
-        SizedBox(width: 12),
+        12.horizontalSpace,
         Text(
           label,
           style: Theme.of(context).textTheme.bodyLarge?.copyWith(
@@ -249,25 +323,22 @@ class _EventManagementScreenState extends State<EventManagementScreen> {
           ),
         ),
         Spacer(),
-        TextButton(
-          onPressed: onTap,
-          child: Text( valueText ?? placeholder),
-        ),
+        TextButton(onPressed: onTap, child: Text(valueText ?? placeholder)),
       ],
     );
   }
 
-  /// ── Add Event Button ───────────────────────────────────────────────────────
-  Widget _buildAddEventButton(BuildContext context) {
+  /// ── Submit Button (Add / Update) ───────────────────────────────────────────
+  Widget _buildSubmitButton(BuildContext context) {
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 16),
       child: FilledButton(
-        style: FilledButton.styleFrom(
-          minimumSize: Size(double.infinity, 0)
-        ),
+        style: FilledButton.styleFrom(minimumSize: Size(double.infinity, 0)),
         onPressed: _submitEvent,
         child: Text(
-          'Add event',
+          _isEditMode
+              ? l10n.eventManagementUpdateEventButton
+              : l10n.eventManagementAddEventButton,
         ),
       ),
     );
@@ -301,74 +372,53 @@ class _EventManagementScreenState extends State<EventManagementScreen> {
     );
   }
 
-  /// ── Categories Tab Bar ─────────────────────────────────────────────────────
-  DefaultTabController _buildCategoriesTabBar(BuildContext context) {
-    var provider = Provider.of<AppConfigProvider>(context);
-    return DefaultTabController(
-      length: categories.length,
-      child: TabBar(
-        onTap: (index) {
-          setState(() {
-            selectedCategory = categories[index];
-          });
-        },
-        labelPadding: EdgeInsets.symmetric(horizontal: 10, vertical: 5),
-        isScrollable: true,
-        indicatorColor: Colors.transparent,
-        dividerColor: Colors.transparent,
-        tabAlignment: TabAlignment.start,
-        overlayColor: WidgetStatePropertyAll(Colors.transparent),
-        tabs: categories
-            .map(
-              (category) => Container(
-            padding: EdgeInsets.symmetric(horizontal: 16, vertical: 10),
-            decoration: BoxDecoration(
-              borderRadius: BorderRadiusGeometry.circular(16),
-              color: category.id == selectedCategory.id
-                  ? Theme.of(context).colorScheme.primary
-                  : Theme.of(context).colorScheme.onSecondary,
-              border: Border.all(
-                width: 1,
-                color: category.id == selectedCategory.id
-                    ? Theme.of(context).colorScheme.primary
-                    : Theme.of(context)
-                    .colorScheme
-                    .secondary
-                    .withAlpha(20),
-              ),
-            ),
-            child: Row(
-              mainAxisSize: MainAxisSize.min,
-              crossAxisAlignment: CrossAxisAlignment.center,
-              children: [
-                Icon(
-                  category.icon,
-                  color: category.id == selectedCategory.id
-                      ? Theme.of(context).colorScheme.onPrimary
-                      : Theme.of(context).colorScheme.primary,
-                ),
-                SizedBox(width: 8),
-                Text(
-                  provider.isEnglish
-                      ? category.nameEn
-                      : category.nameAr,
-                  style:
-                  Theme.of(context).textTheme.titleSmall?.copyWith(
-                    color: selectedCategory.id == category.id
-                        ? Theme.of(context)
-                        .colorScheme
-                        .onPrimary
-                        : Theme.of(context)
-                        .colorScheme
-                        .secondary,
-                  ),
-                ),
-              ],
-            ),
+  Future<void> _createEvent(Event event) async {
+    AppDialog.showLoadingDialog(context, "Loading...");
+    try {
+      final firebaseEventDatabase = FirebaseEventDatabase();
+      await firebaseEventDatabase.addEvent(event);
+      if (mounted) {
+        Navigator.of(context).pop();
+        Navigator.pushReplacementNamed(context, HomeScreen.routeName);
+        ScaffoldMessenger.of(context).showSnackBar(
+          SnackBar(
+            backgroundColor: Theme.of(context).colorScheme.primary,
+            content: Text(l10n.eventManagementEventAddedSuccess),
           ),
-        )
-            .toList(),
-      ),
-    );
+        );
+      }
+    } catch (e) {
+      print("Failed to create event: $e");
+      AppDialog.showDialogMessage(
+        context,
+        "An error has occured - ${e.toString()}",
+        negativeActionText: "ok",
+      );
+    }
+  }
+
+  Future<void> _updateEvent(Event event) async {
+    AppDialog.showLoadingDialog(context, "Loading...");
+    try {
+      final firebaseEventDatabase = FirebaseEventDatabase();
+      await firebaseEventDatabase.updateEvent(event);
+      if (mounted) {
+        Navigator.of(context).pop();
+        Navigator.pushReplacementNamed(context, HomeScreen.routeName);
+        ScaffoldMessenger.of(context).showSnackBar(
+          SnackBar(
+            backgroundColor: Theme.of(context).colorScheme.primary,
+            content: Text(l10n.eventManagementEventUpdatedSuccess),
+          ),
+        );
+      }
+    } catch (e) {
+      print("Failed to update event: $e");
+      AppDialog.showDialogMessage(
+        context,
+        "An error has occured - ${e.toString()}",
+        negativeActionText: "ok",
+      );
+    }
   }
 }
